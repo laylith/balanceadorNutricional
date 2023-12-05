@@ -3,9 +3,17 @@ class Prato {
     constructor(tamanho = 5) {
       this.alimentos = new Array(tamanho);
 
-      for (let i = 0; i < tamanho; i++)
+      
+      for (let i = 0; i < tamanho; i++) {
+        let numeroValido;
+        //Verifica para saber se valor aleatório é NaN
+        do {
+          numeroValido = Math.random() * 100;
+        } while (isNaN(numeroValido));
+        
         //Preenche o array com valores aleatórios entre 0 e 100 para testar quantidades de cada alimento.
-        this.alimentos[i] = Math.random() * 100;
+        this.alimentos[i] = numeroValido;
+      }
     }
     
     //Adiciona um valor ao final do array de alimentos.
@@ -110,7 +118,12 @@ class Prato {
       
        //Percorre os alimentos do prato parental e gera um número aleatório de 0 a 1.
       while (cont < pratoParental.alimentos.length) {
-        let R = Math.random();
+        let R
+        //Verifica para saber se valor de R é NaN
+        do {
+          R = Math.random();
+        } while (isNaN(R));
+        
         //Verifica se R é menor que o parâmetro de taxa de crossover (CR).
         if (R < EvolucaoDiferencial.CR) {
           X = A.alimentos[cont] + EvolucaoDiferencial.F * (B.alimentos[cont] - C.alimentos[cont]);
@@ -119,9 +132,14 @@ class Prato {
           X = pratoParental.alimentos[cont];
         }
 
-        // Adiciona o valor ao prato de tentativa.
-        tentativa.add(X);
-        cont++;
+        if (!isNaN(X)) {
+          // Adiciona o valor ao prato de tentativa.
+          tentativa.add(X);
+          cont++;
+        } else {
+          // Se X for NaN, pular valor e seguir com outro loop.
+          cont++;
+        }
       }
       return tentativa;
     }
