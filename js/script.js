@@ -155,49 +155,67 @@ class Prato {
     seleciona3(parental) {
       let p2 = [];
       let vetores3 = [];
-  
+      
+      //Adiciona elementos ao array p2, excluindo o elemento na posição parental.
       for (let i = 0; i < this.tamanho; i++) {
         if (parental !== i) p2.push(this.pratos[i]);
       }
-  
+      
+      //Loop para selecionar aleatoriamente 3 elementos de p2.
       for (let i = 0; i < 3; i++) {
+        //Gera um índice aleatório dentro dos limites de p2.
         let indice = Math.floor(Math.random() * (p2.length - i));
+        //Adiciona o elemento correspondente ao índice gerado ao array vetores3.
         vetores3.push(p2[indice]);
+        //Remove o elemento selecionado de p2 para evitar repetições.
         p2.splice(indice, 1);
       }
+      //Retorna o array contendo os 3 elementos aleatórios selecionados.
       return vetores3;
     }
   
     toString() {
       let populacao = "[";
       for (let i = 0; i < this.tamanho; i++)
+        //Concatena cada elemento do array convertido para string à variável populacao.
         populacao += this.pratos[i].toString();
       populacao += "]";
       return populacao;
     }
   }
   
+  //Probabilidade de Crossover.
   EvolucaoDiferencial.CR = 0.3;
+  //Peso Diferencial.
   EvolucaoDiferencial.F = 0.8;
   
   class Teste {
     static main() {
       let tres;
       let tentativa;
+      //Instancia a classe EvolucaoDiferencial passando o parâmetro 5 ao construtor.
       let ed = new EvolucaoDiferencial(5);
+
+      //Inicializa a população.
       ed.populacao();
+
       for (let i = 0; i < 1000; i++) {
         for (let j = 0; j < 5; j++) {
+          //Chama o método de seleção de três elementos do vetor.
           tres = ed.seleciona3(j);
+          //Chama o método de mutação de três elementos do vetor e parental.
           tentativa = ed.mutacao(j, tres);
+          //Compara o fitness da tentativa com o fitness do vetor atual e, se a tentativa for melhor, atualiza a população.
           if (ed.fitness(tentativa) < ed.fitness(ed.pratos[j])) {
             ed.removeVetor(j);
             ed.addPrato(tentativa);
           }
         }
+        //Exibe informações sobre o melhor vetor atual.
         console.log(
           ed.melhorVetor() + " - " + ed.pratos[ed.melhorVetor()].toString()
         );
+        //Exibe o fitness do melhor vetor atual.
         console.log(
           "Fitness: " + ed.fitness(ed.pratos[ed.melhorVetor()])
         );
