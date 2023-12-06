@@ -1,0 +1,75 @@
+body {
+    margin: 1;
+    padding: 0;
+    background-color: #ffffff;
+  
+}
+
+div#interface {
+    width: 100%;
+    justify-content: center;
+}
+
+header#cabecalho {
+    height: auto;
+    background-color: #0000FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+header#cabecalho h1 {
+    color: white;
+    margin: 0;
+}
+
+section#corpo {
+    display: block;
+    width: 80%;
+    padding: 0px 40px 40px 40px;
+    text-align: center;
+    margin: auto;
+}
+
+section#corpo h2{
+    color:  #0000FF;
+    margin: 0;
+}
+div#caixa {
+    width: 200px;
+    height: 50px;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+}
+div#fora p {
+    text-align: center;
+    margin: 0;
+    color: #000000;
+    font-size: 14px;
+}
+
+div#container{
+    display: flex;
+    justify-content: center;
+}
+
+table#tabela{
+    width: 100%;
+    margin-top: 20px;
+    border: 1px solid #000000;
+    border-collapse: collapse;
+    justify-content: center;
+    
+} 
+
+table#tabela th{
+    border: 1px solid #000000;
+    justify-content: center;
+}
+
+table#fundo th{
+    background-color: #1884cc;
+    color: white;
+}
+
