@@ -63,12 +63,12 @@ table#tabela{
     
 } 
 
-table#tabela th{
+table#tabela td{
     border: 1px solid #000000;
     justify-content: center;
 }
 
-table#fundo th{
+table#fundo td{
     background-color: #1884cc;
     color: white;
 }
