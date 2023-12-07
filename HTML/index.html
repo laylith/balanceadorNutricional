@@ -2,80 +2,89 @@
 <html lang="en">
 
 <head>
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="widht=device-width, initial-scale=1.0">
-        <script type="text/javascript" src="/js/script.js"></script>
-        <title>Document</title>
-        <link rel="stylesheet" href="../css/estilo.css">
-    </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="../js/debug2.js"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/estilo.css">
+</head>
 
 <body>
-    <form action="/HTML/resultados.html">
-        <div id="interface">
-            <header id="cabecalho">
-                <h1>YASMIN A+</h1>
-            </header>
+    <div id="interface">
+        <header id="cabecalho">
+            <h1>YASMIN A+</h1>
+        </header>
+    </div>
+    <hr>
+    <section id="corpo">
+        <h2>Balanceador nutricional</h2>
+        <p>Descubra a quantidade de alimentos ideais em uma porção de 100g para balancear sua refeição!</p>
+    </section>
+    <div id="container">
+        <div>
+            <p>
+                Porcentagem de proteínas
+            </p>
+            <input type="text" name="" id="">
         </div>
-        <hr>
-        <section id="corpo">
-            <h2>Balanceador nutricional</h2>
-            <p>Descubra a quantidade de alimentos ideial em uma
-                porção de 100g para balancear sua refeição!</p>
-        </section>
-        <div id="container">
-            <div>
-                <p>
-                    Porcentagem de proteínas
-                </p>
-                <input type="text" name="" id="">
-            </div>
-            <div>
-                <p>
-                    Porcentagem de carboidratos
-                </p>
-                <input type="text" name="" id="">
-            </div>
-            <div>
-                <p>
-                    Porcentagem de Gorduras
-                </p>
-                <input type="text" name="" id="">
-            </div>
+        <div>
+            <p>
+                Porcentagem de carboidratos
+            </p>
+            <input type="text" name="" id="">
         </div>
+        <div>
+            <p>
+                Porcentagem de Gorduras
+            </p>
+            <input type="text" name="" id="">
+        </div>
+    </div>
 
-        <table id="tabela">
-            <tr id="fundo">
-                <th>Alimentos</th>
-                <th>Proteinas por porção</th>
-                <th>Carboidratos por porcao</th>
-                <th>Gorduras por porcao</th>
-            </tr>
-            <tr>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-            </tr>
-            <tr>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-            </tr>
-            <tr>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-                <td><input type="text" name="" id=""></td>
-            </tr>
-        </table>
-        <button>Adicione um Alimento +</button>
-        <br>
-
-    <button type="submit">Ver Resultados</button>
-    </form>
+    <table id="tabela">
+        <tr id="fundo">
+            <th>Alimentos</th>
+            <th>Proteínas por porção</th>
+            <th>Carboidratos por porção</th>
+            <th>Gorduras por porção</th>
+            <th>Ações</th>
+        </tr>
+        <tr class="alimentos">
+            <td><input type="text" value="teste1" class="alimento" name="" id=""></td>
+            <td><input type="text" value="0.05" class="proteina" name="" id=""></td>
+            <td><input type="text" value="0.23" class="carboidrato" name="" id=""></td>
+            <td colspan="2"><input type="text" value="0.05" class="gordura" name="" id=""></td>
+        </tr>
+        <tr class="alimentos">
+            <td><input type="text" value="teste2" class="alimento" id=""></td>
+            <td><input type="text" value="0.24" class="proteina" id=""></td>
+            <td><input type="text" value="0.02" class="carboidrato" id=""></td>
+            <td colspan="2"><input type="text" value="0.00" class="gordura" id=""></td>
+        </tr>
+        <tr class="alimentos">
+            <td><input type="text" value="teste3" class="alimento" id=""></td>
+            <td><input type="text" value="0.26" class="proteina" id=""></td>
+            <td><input type="text" value="0.026" class="carboidrato" id=""></td>
+            <td colspan="2"><input type="text" value="0.01" class="gordura" id=""></td>
+        </tr>
+        <tr class="alimentos">
+            <td><input type="text" value="teste4" class="alimento" id=""></td>
+            <td><input type="text" value="0.15" class="proteina" id=""></td>
+            <td><input type="text" value="0.13" class="carboidrato" id=""></td>
+            <td colspan="2"><input type="text" value="0.089" class="gordura" id=""></td>
+        </tr>
+        <tr class="alimentos">
+            <td><input type="text" value="teste5" class="alimento" id=""></td>
+            <td><input type="text" value="0.29" class="proteina" id=""></td>
+            <td><input type="text" value="0.095" class="carboidrato" id=""></td>
+            <td colspan="2"><input type="text" value="0.014" class="gordura" id=""></td>
+        </tr>
+    </table>
+    <button onclick="adicionarLinha()">Adicione um Alimento +</button>
+    <br>
+    <button onclick="processa()">Ver Resultados</button>
+    <script>
+    </script>
 </body>
 
 </html>

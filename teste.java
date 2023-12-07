@@ -235,13 +235,15 @@ public class Teste {
             for (int j = 0; j < 5; j++) {
                 tres = ed.seleciona3(j);
                 tentativa = ed.mutacao(j, tres);
+                System.out.println(tentativa);
+                // System.out.println(ed.fitness(tentativa));
                 if (ed.fitness(tentativa) < ed.fitness((Prato) ed.getPratos().get(j))) {
                     ed.removeVetor(j);
                     ed.addPrato(tentativa);
                 }
             }
-            System.out.println(ed.melhorVetor() + " - " + (Prato) ed.getPratos().get(ed.melhorVetor()));
-            System.out.println("Fitness: " + ed.fitness((Prato) ed.getPratos().get(ed.melhorVetor())));
+            // System.out.println(ed.melhorVetor() + " - " + (Prato) ed.getPratos().get(ed.melhorVetor()));
+            // System.out.println("Fitness: " + ed.fitness((Prato) ed.getPratos().get(ed.melhorVetor())));
         }
     }
 }
