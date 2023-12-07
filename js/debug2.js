@@ -1,5 +1,4 @@
 
-
 function adicionarLinha() {
     var tabela = document.getElementById('tabela');
     var novaLinha = tabela.insertRow(tabela.rows.length);
@@ -31,6 +30,36 @@ function removerLinha(botaoRemover) {
     }
 }
 
+// document.getElementById("resultados").addEventListener("click", function () {
+    
+// });
+
+function downloadTxt() {
+    // Dados a serem incluídos no arquivo .txt
+    var dados = "Conteúdo do arquivo de texto.";
+
+    // Cria um Blob com os dados e define o tipo MIME como texto/plain
+    var blob = new Blob([dados], { type: "text/plain" });
+
+    // Cria um objeto URL para o Blob
+    var url = window.URL.createObjectURL(blob);
+
+    // Cria um link de download
+    var link = document.createElement("a");
+    link.href = url;
+    link.download = "dados.txt"; // Nome do arquivo que será baixado
+
+    var baixarTxt = document.getElementById("downloadTxt");
+    baixarTxt.appendChild(link);
+
+    // Simula um clique no link para iniciar o download
+    link.click();
+
+    // Remove o link do botão após o download
+    baixarTxt.removeChild(link);
+}
+
+
 
 function processa() {
     var tam = document.getElementsByClassName('alimento');
@@ -41,6 +70,13 @@ function processa() {
         // console.log('Repetição ' + (i + 1) + ': Valor do input - ' + tam[i].value);
     }
     
+    document.getElementById("corpo").classList.toggle("hidden");
+    document.getElementById("balanceamento").classList.toggle("hidden");
+    // var index = document.getElementById("corpo");
+    // index.classList.toggle("invisible");
+
+    
+
 class Prato {
     
     constructor(tamanho = tam.length) {
@@ -198,11 +234,13 @@ class EvolucaoDiferencial {
 EvolucaoDiferencial.CR = 0.3;
 EvolucaoDiferencial.F = 0.8;
 
+
 class Teste {
     static main() {
         const ed = new EvolucaoDiferencial(5);
+        var dados = [];
         ed.populacao();
-        for (let i = 0; i < 3000; i++) {
+        for (let i = 0; i < 500; i++) {
             for (let j = 0; j < 5; j++) {
                 const tres = ed.seleciona3(j);
                 // console.log(ed.seleciona3())
@@ -228,12 +266,53 @@ class Teste {
             }
             const melhorIndice = ed.melhorVetor();
             const fitnessFormatado = ed.fitness(ed.pratos[melhorIndice]).toFixed(2);
-            console.log(`Geração ${i + 1}:`);
-            console.log(`Melhor Prato - ${ed.pratos[melhorIndice].toString()}`);
-            console.log(`Fitness - ${fitnessFormatado}`);
+            // console.log(`Geração ${i + 1}:`);
+            // console.log(`Melhor Prato - ${ed.pratos[melhorIndice].toString()}`);
+            dados.push(`Geração ${i + 1}:`);
+            dados.push('\n');
+            dados.push(`Melhor Prato - ${ed.pratos[melhorIndice].toString()}`);
+            dados.push('\n');
+            dados.push(`Fitness - ${fitnessFormatado}`);
+            dados.push('\n\n');
+            
+            // Dados a serem incluídos no arquivo .txt
+
+            // console.log(`Fitness - ${fitnessFormatado}`);
         }
+            // console.log(dados);
+            // // Cria um Blob com os dados e define o tipo MIME como texto/plain
+            // var blob = new Blob([dados], { type: "text/plain" });
+
+            // // Cria um objeto URL para o Blob
+            // var url = window.URL.createObjectURL(blob);
+
+            // // Cria um link de download
+            // var link = document.createElement("a");
+            // link.href = url;
+            // link.download = "dados.txt"; // Nome do arquivo que será baixado
+
+            // // Adiciona o link ao documento
+            // document.body.appendChild(link);
+
+            // // Simula um clique no link para iniciar o download
+            // link.click();
+
+            // // Remove o link do documento
+            // document.body.removeChild(link);
+
+            // var baixarTxt = document.getElementById("downloadTxt");
+            // baixarTxt.appendChild(link);
+
+            // // Simula um clique no link para iniciar o download
+            // link.click();
+
+            // // Remove o link do botão após o download
+            // baixarTxt.removeChild(link);
     }
 }
 
+
+
 Teste.main();
 }
+

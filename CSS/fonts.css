@@ -1,0 +1,34 @@
+@font-face {
+    font-family: 'FonteCabecalho';
+    font-weight: normal;
+    font-style: normal;
+    src: url('../fontes/Waffle.otf');
+}
+
+@font-face {
+    font-family: 'FonteCorpo';
+    font-weight: normal;
+    font-style: normal;
+    src: url('../fontes/Nunito.ttf');
+}
+
+header#cabecalho{
+    font-family: 'FonteCabecalho';
+    font-size: 2em;
+}
+
+section#corpo h2{
+    font-family: 'FonteCabecalho';
+    font-size: 1.6em;
+}
+
+section#corpo h3{
+    font-family: 'FonteCabecalho';
+    font-size: 1.2em;
+}
+
+section#corpo p{
+    font-family: 'FonteCorpo';
+    font-size: 1.2em;
+}
+
