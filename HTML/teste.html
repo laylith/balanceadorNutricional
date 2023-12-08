@@ -1,63 +1,11 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Alterar Fundo do Botão</title>
-    <style>
-        #tabela {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: center;
-            border: 1px solid #ddd;
-        }
-
-        .botao-celula {
-            background-color: black;
-        }
-    </style>
-    <script>
-        function adicionarLinha() {
-            var tabela = document.getElementById('tabela');
-            var novaLinha = tabela.insertRow(tabela.rows.length);
-
-            var celula1 = novaLinha.insertCell(0);
-            var celula2 = novaLinha.insertCell(1);
-            var celula3 = novaLinha.insertCell(2);
-            var celula4 = novaLinha.insertCell(3);
-            var celulaAcoes = novaLinha.insertCell(4);
-
-            celula1.innerHTML = '<input type="text" class="alimento campo" name="" id="" placeholder="alimento..." maxlength="10">';
-            celula2.innerHTML = '<input type="text" class="proteina campo" name="" id="" placeholder="proteina g..." maxlength="10">';
-            celula3.innerHTML = '<input type="text" class="carboidrato campo" name="" id="" placeholder="carboidrato g..." maxlength="10">';
-            celula4.innerHTML = '<input type="text" class="gordura campo" name="" id="" placeholder="gordura g...." maxlength="10">';
-
-            // Adicionar botão "Remover" exceto para as três primeiras linhas
-            if (tabela.rows.length > 3) {
-                celulaAcoes.innerHTML = '<button onclick="removerLinha(this)" class="removerbtn">Remover</button>';
-            }
-
-            // Adicionar a classe à célula do botão
-            celulaAcoes.classList.add('botao-celula');
-        }
-
-        function removerLinha(button) {
-            var row = button.parentNode.parentNode;
-            row.parentNode.removeChild(row);
-        }
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
-
 <body>
-
-    <table id="tabela">
-        <!-- O restante do seu código HTML da tabela aqui -->
-    </table>
-    <button onclick="adicionarLinha()">Adicionar Linha</button>
-
+    
 </body>
-
 </html>
