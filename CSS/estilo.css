@@ -6,7 +6,7 @@ body {
 
 div#interface {
     text-align: center;
-    margin: -8px -8px 0px -8px;
+    margin: -10px -10px 0px -10px;
 }
 
 header#cabecalho {
@@ -23,7 +23,7 @@ header#cabecalho h1 {
 p#aviso{
     color: #ff0000;
     font-weight: bold;
-    margin-top: -20px;
+    margin-top: -25px;
 }
 .hidden {
     display: none;
@@ -38,18 +38,18 @@ section#corpo h2{
     margin: 0;
 }
 
-/* div#caixa {
+div#caixa {
     width: 200px;
     height: 50px;
     border: 1px solid rgb(34, 33, 33);
     box-sizing: border-box;
-} */
-/* div#fora p {
+}
+div#fora p {
     text-align: center;
     margin: 0;
     color: #1a1818;
     font-size: 14px;
-} */
+}
 
 div#container{
     display: flex;
@@ -71,7 +71,7 @@ th{
     background-color: #614AEB;
 }
 
-table#tabela td.celula, td#vetorResultados{
+table#tabela td.celula{
     background-color: #c7c6cc;
     border: 5px solid #f0ebeb;
     border-radius: 12px;
@@ -113,21 +113,4 @@ button#remover{
 
 .removerbtn{
     background-color: transparent;
-}
-
-.qdadeAli{
-    border: 5px solid #f0ebeb;
-    border-radius: 12px;
-    padding: 7px;
-    color:#f0ebeb;
-    background-color: #614AEB;
-    width: 30%;
-}
-
-td#vetorNomes{
-    border: 5px solid #f0ebeb;
-    border-radius: 12px;
-    padding: 7px;
-    color:#f0ebeb;
-    background-color: #614AEB;
 }
