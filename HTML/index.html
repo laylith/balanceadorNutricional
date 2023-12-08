@@ -31,20 +31,19 @@
                 <p class="space">
                     Porcentagem de proteínas
                 </p>
-                <input type="text" onblur="" id="percProteinas" class="perc" id="" placeholder="gramas..." maxlength="10"
-                    value="">
+                <input type="text" onblur="" id="percProteinas" class="perc" id="" placeholder="gramas..." value="" size="24">
             </div>
             <div>
                 <p class="space">
                     Porcentagem de carboidratos
                 </p>
-                <input type="text" id="percCarboidratos"  class="perc" name="" id="" placeholder="gramas..." maxlength="10" value="">
+                <input type="text" id="percCarboidratos" class="perc" name="" id="" placeholder="gramas..." maxlength="10" value="" size="27">
             </div>
             <div>
                 <p class="space">
                     Porcentagem de Gorduras
                 </p>
-                <input type="text" id="percGorduras" class="perc" name="" id="" placeholder="gramas..." maxlength="10" value="">
+                <input type="text" id="percGorduras" class="perc" name="" id="" placeholder="gramas..." maxlength="10" value="" size="24">
             </div>
         </div>
         <br>
@@ -57,24 +56,22 @@
                 <th>Gorduras em 100g</th>
             </tr>
             <tr class="alimentos">
-                <td><input type="text" value="" class="alimento campo" name="" id="" placeholder="alimento..."></td>
-                <td><input type="text" value="" class="proteina campo" name="" id="" placeholder="proteina g..."></td>
-                <td><input type="text" value="" class="carboidrato campo" name="" id="" placeholder="carboidrato g...">
-                </td>
-                <td colspan=""><input type="text" value="" class="gordura campo" name="" id=""
-                        placeholder="gordura g..."></td>
+                <td class="celula"><input type="text" value="" class="alimento campo" name="" id="" placeholder="alimento..."></td>
+                <td class="celula"><input type="text" value="" class="carboidrato campo" name="" id="" placeholder="gramas..."></td>
+                <td class="celula"><input type="text" value="" class="proteina campo" name="" id="" placeholder="gramas..."></td>
+                <td class="celula"><input type="text" value="" class="gordura campo" name="" id="" placeholder="gramas..."></td>
             </tr>
             <tr class="alimentos">
-                <td><input type="text" value="" class="alimento campo" id="" placeholder="alimento..."></td>
-                <td><input type="text" value="" class="proteina campo" id="" placeholder="proteina g..."></td>
-                <td><input type="text" value="" class="carboidrato campo" id="" placeholder="carboidrato g..."></td>
-                <td colspan=""><input type="text" value="" class="gordura campo" id="" placeholder="gordura g..."></td>
+                <td class="celula"><input type="text" value="" class="alimento campo" id="" placeholder="alimento..."></td>
+                <td class="celula"><input type="text" value="" class="proteina campo" id="" placeholder="gramas..."></td>
+                <td class="celula"><input type="text" value="" class="carboidrato campo" id="" placeholder="gramas..."></td>
+                <td class="celula""><input type="text" value="" class="gordura campo" id="" placeholder="gramas..."></td>
             </tr>
             <tr class="alimentos">
-                <td><input type="text" value="" class="alimento campo" id="" placeholder="alimento..."></td>
-                <td><input type="text" value="" class="proteina campo" id="" placeholder="proteina g..."></td>
-                <td><input type="text" value="" class="carboidrato campo" id="" placeholder="carboidrato g..."></td>
-                <td colspan=""><input type="text" value="" class="gordura campo" id="" placeholder="gordura g..."></td>
+                <td class="celula"><input type="text" value="" class="alimento campo" id="" placeholder="alimento..."></td>
+                <td class="celula"><input type="text" value="" class="proteina campo" id="" placeholder="gramas..."></td>
+                <td class="celula"><input type="text" value="" class="carboidrato campo" id="" placeholder="gramas..."></td>
+                <td class="celula" ><input type="text" value="" class="gordura campo" id="" placeholder="gramas..."></td>
             </tr>
             <!-- <tr class="alimentos">
                 <td><input type="text" value="" class="alimento" id="" placeholder="alimento..."></td>
@@ -91,10 +88,9 @@
         </table>
         <br>
         <br>
-        <br>
         <div class="botoes">
-            <button onclick="adicionarLinha()" id="add">Adicione um Alimento +</button>
-            <button onclick="processa(); coluna()" id="resultados">Ver Resultados</button>
+            <button onclick="adicionarLinha()" class="button" id="add">Adicione um Alimento +</button>
+            <button onclick="processa(); coluna()" class="button" id="resultados">Ver Resultados</button>
         </div>
     </section>
 
@@ -110,10 +106,9 @@
         </table>
         <br>
         <div id="teste"></div>
-        <button onclick="downloadTxt()" id="downloadTxt">Download TXT</button>
+        <button onclick="downloadTxt()" class="button" id="downloadTxt">Download TXT</button>
         <!-- arrumar -->
-        <button onclick="recarregarPagina()" id="resultados">Novo balanceamento</button>
+        <button onclick="recarregarPagina()" class="button" id="resultados">Novo balanceamento</button>
     </section>
 </body>
-
 </html>
