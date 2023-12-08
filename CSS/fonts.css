@@ -14,55 +14,21 @@
 
 header#cabecalho{
     font-family: 'FonteCabecalho';
-    font-size: 2.4em;
+    font-size: 2em;
 }
 
 section#corpo h2{
     font-family: 'FonteCabecalho';
-    font-size: 2em;
+    font-size: 1.6em;
 }
 
 section#corpo h3{
     font-family: 'FonteCabecalho';
-    font-size: 1.6em;
+    font-size: 1.2em;
 }
 
-p{
-    font-family: 'FonteCorpo';
-    font-size: 1.4em;
-}
-
-tr#fundo, .qdadeAli{
-    font-family: 'FonteCabecalho';
-    font-size: 1.6em;
-}
-
-::placeholder{
-    font-family: 'FonteCorpo';
-    font-size: 1em;
-}
-
-input{
+section#corpo p{
     font-family: 'FonteCorpo';
     font-size: 1.2em;
 }
 
-section#balanceamento h2{
-    font-family: 'FonteCabecalho';
-    font-size: 2.4em;
-}
-
-button{
-    font-family: 'FonteCabecalho';
-    font-size: 1.8em;
-}
-
-button#remover{
-    font-family: 'FonteCabecalho';
-    font-size: 1em;
-}
-
-th#vetorResultado{
-    font-family: 'FonteCorpo';
-    font-size: 1.2em;
-}
