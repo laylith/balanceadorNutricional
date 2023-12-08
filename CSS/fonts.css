@@ -37,12 +37,7 @@ tr#fundo, .qdadeAli{
     font-size: 1.6em;
 }
 
-::placeholder{
-    font-family: 'FonteCorpo';
-    font-size: 1em;
-}
-
-input{
+::placeholder, input{
     font-family: 'FonteCorpo';
     font-size: 1.2em;
 }
@@ -59,7 +54,7 @@ button{
 
 button#remover{
     font-family: 'FonteCabecalho';
-    font-size: 1em;
+    font-size: 1.2em;
 }
 
 th#vetorResultado{

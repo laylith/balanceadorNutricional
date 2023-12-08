@@ -1,5 +1,5 @@
 body {
-    background-color: #EBEAE7;
+    background-color: #f0ebeb;
     text-align: center;
     flex-direction: column;
 }
@@ -57,20 +57,25 @@ div#container{
 }
 
 table#tabela, table#tabela2{
-    width: 100%;
-    margin-top: 20px;
+    width: 80%;
+    margin: auto;
     border-collapse: collapse;
     justify-content: center;
-    background-color: #614AEB;
 } 
 
-table#tabela, table#tabela2 td{
-    justify-content: center;
+th{
+    border: 5px solid #f0ebeb;
+    border-radius: 12px;
+    padding: 7px;
+    color:#f0ebeb;
+    background-color: #614AEB;
 }
 
-table#fundo, table#fundo td{
-    background-color: #1884cc;
-    color: rgb(255, 255, 255);
+table#tabela td.celula{
+    background-color: #c7c6cc;
+    border: 5px solid #f0ebeb;
+    border-radius: 12px;
+    padding: 5px;
 }
 
 .botoes{
@@ -81,12 +86,31 @@ table#fundo, table#fundo td{
 input.campo{
     background-color: transparent;
     border: 0px;
+    justify-content: center;
 }
 
-.campo::placeholder{
-    color: rgb(255, 255, 255);
+::placeholder{
+    color: rgb(70, 70, 70);
 }
 
-.perc::placeholder{
-    color: rgb(37, 37, 37);
+.button{
+    background-color: #614AEB;
+    color: #f0ebeb;
+    border-bottom: 7px solid rgb(48, 36, 117); 
+    border-right: 5px solid rgb(48, 36, 117);
+    border-radius: 7px;
+    padding: 10px;
+}
+
+button#remover{
+    background-color: #614AEB;
+    letter-spacing: 1px;
+    color: #f0ebeb;
+    border: 0px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.removerbtn{
+    background-color: transparent;
 }
