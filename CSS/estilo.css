@@ -1,25 +1,36 @@
 body {
     background-color: #EBEAE7;
     text-align: center;
+    flex-direction: column;
 }
 
 div#interface {
-    width: 100%;
+    text-align: center;
+    margin: -10px -10px 0px -10px;
 }
 
 header#cabecalho {
     height: auto;
     background-color: #614AEB;
-    display: flex;
-}
+}   
 
 header#cabecalho h1 {
-    color: white;
+    color: rgb(255, 255, 255);
     margin: 0;
+    text-align: center;
 }
 
+p#aviso{
+    color: #ff0000;
+    font-weight: bold;
+    margin-top: -25px;
+}
 .hidden {
     display: none;
+}
+
+.space{
+    margin: 0 20px 0 20px;
 }
 
 section#corpo h2{
@@ -27,17 +38,16 @@ section#corpo h2{
     margin: 0;
 }
 
-
 div#caixa {
     width: 200px;
     height: 50px;
-    border: 1px solid #000000;
+    border: 1px solid rgb(34, 33, 33);
     box-sizing: border-box;
 }
 div#fora p {
     text-align: center;
     margin: 0;
-    color: #000000;
+    color: #1a1818;
     font-size: 14px;
 }
 
@@ -46,22 +56,37 @@ div#container{
     justify-content: center;
 }
 
-table#tabela{
+table#tabela, table#tabela2{
     width: 100%;
     margin-top: 20px;
-    border: 1px solid #000000;
     border-collapse: collapse;
     justify-content: center;
-    
+    background-color: #614AEB;
 } 
 
-table#tabela td{
-    border: 1px solid #000000;
+table#tabela, table#tabela2 td{
     justify-content: center;
 }
 
-table#fundo td{
+table#fundo, table#fundo td{
     background-color: #1884cc;
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
+.botoes{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+input.campo{
+    background-color: transparent;
+    border: 0px;
+}
+
+.campo::placeholder{
+    color: rgb(255, 255, 255);
+}
+
+.perc::placeholder{
+    color: rgb(37, 37, 37);
+}
