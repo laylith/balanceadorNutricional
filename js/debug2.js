@@ -147,7 +147,7 @@ function processa() {
             for (var i = 0; i < tam.length; i++) {
                 tamCarb[i].value = tamCarb[i].value.replace(",", ".");
                 if (tamCarb[i].value == "") {
-                    console.log("teste")
+                    // console.log("teste")
                     return;
                 }
                 tamProt[i].value = tamProt[i].value.replace(",", ".");
@@ -278,8 +278,10 @@ function coluna() {
     for (let cont = 0; cont < tam.length; cont++) {
         var celula1 = tabela.rows[0].insertCell(tabela.rows[0].cells.length);
         var celula2 = tabela.rows[1].insertCell(tabela.rows[1].cells.length);
-        celula1.innerHTML = '<th id="vetorResultado">' + tam[cont].value + '</th>';
+        celula1.innerHTML = '<td>' + tam[cont].value + '</td>';
+        celula1.id = "vetorNomes";
         celula2.innerHTML = '<td>' + colValor[cont] + '</td>';
+        celula2.id = "vetorResultados";
     }
 
 }
