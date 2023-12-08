@@ -70,31 +70,31 @@ function processa() {
     percGorduras = parseInt(document.getElementById('percGorduras').value);
     percProteinas = parseInt(document.getElementById('percProteinas').value);
 
-    if (isNaN(percCarboidratos) || isNaN(percGorduras) || isNaN(percProteinas)) {
-        alert("Preencha a Porcentagem!");
-        return;
-    } else if ((percCarboidratos + percGorduras + percProteinas) < 100) {
-        alert("Menos de 100%");
-        return;
-    } else if ((percCarboidratos + percGorduras + percProteinas) > 100) {
-        alert("Mais de 100%");
-        return;
-    }
+    // if (isNaN(percCarboidratos) || isNaN(percGorduras) || isNaN(percProteinas)) {
+    //     alert("Preencha a Porcentagem!");
+    //     return;
+    // } else if ((percCarboidratos + percGorduras + percProteinas) < 100) {
+    //     alert("Menos de 100%");
+    //     return;
+    // } else if ((percCarboidratos + percGorduras + percProteinas) > 100) {
+    //     alert("Mais de 100%");
+    //     return;
+    // }
 
     var tam = document.getElementsByClassName('alimento');
     var tamCarb = document.getElementsByClassName('carboidrato');
     var tamProt = document.getElementsByClassName('proteina');
     var tamGord = document.getElementsByClassName('gordura');
 
-    for (var i = 0; i < tam.length; i++) {
-        tamCarb[i].value = tamCarb[i].value.replace(",", ".");
-        tamProt[i].value = tamProt[i].value.replace(",", ".");
-        tamGord[i].value = tamGord[i].value.replace(",", ".");
-        if (tamCarb[i].value == "" || tamProt[i].value == "" || tamGord[i].value == "") {
-            alert("Preencha todos os campos!")
-            return;
-        }
-    }
+    // for (var i = 0; i < tam.length; i++) {
+    //     tamCarb[i].value = tamCarb[i].value.replace(",", ".");
+    //     tamProt[i].value = tamProt[i].value.replace(",", ".");
+    //     tamGord[i].value = tamGord[i].value.replace(",", ".");
+    //     if (tamCarb[i].value == "" || tamProt[i].value == "" || tamGord[i].value == "") {
+    //         alert("Preencha todos os campos!")
+    //         return;
+    //     }
+    // }
 
 
 
