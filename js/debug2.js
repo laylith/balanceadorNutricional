@@ -70,31 +70,31 @@ function processa() {
     percGorduras = parseInt(document.getElementById('percGorduras').value);
     percProteinas = parseInt(document.getElementById('percProteinas').value);
 
-    if (isNaN(percCarboidratos) || isNaN(percGorduras) || isNaN(percProteinas)) {
-        alert("Preencha a Porcentagem!");
-        return;
-    } else if ((percCarboidratos + percGorduras + percProteinas) < 100) {
-        alert("Menos de 100%");
-        return;
-    } else if ((percCarboidratos + percGorduras + percProteinas) > 100) {
-        alert("Mais de 100%");
-        return;
-    }
+    // if (isNaN(percCarboidratos) || isNaN(percGorduras) || isNaN(percProteinas)) {
+    //     alert("Preencha a Porcentagem!");
+    //     return;
+    // } else if ((percCarboidratos + percGorduras + percProteinas) < 100) {
+    //     alert("Menos de 100%");
+    //     return;
+    // } else if ((percCarboidratos + percGorduras + percProteinas) > 100) {
+    //     alert("Mais de 100%");
+    //     return;
+    // }
 
     var tam = document.getElementsByClassName('alimento');
     var tamCarb = document.getElementsByClassName('carboidrato');
     var tamProt = document.getElementsByClassName('proteina');
     var tamGord = document.getElementsByClassName('gordura');
 
-    for (var i = 0; i < tam.length; i++) {
-        tamCarb[i].value = tamCarb[i].value.replace(",", ".");
-        tamProt[i].value = tamProt[i].value.replace(",", ".");
-        tamGord[i].value = tamGord[i].value.replace(",", ".");
-        if (tamCarb[i].value == "" || tamProt[i].value == "" || tamGord[i].value == "") {
-            alert("Preencha todos os campos!")
-            return;
-        }
-    }
+    // for (var i = 0; i < tam.length; i++) {
+    //     tamCarb[i].value = tamCarb[i].value.replace(",", ".");
+    //     tamProt[i].value = tamProt[i].value.replace(",", ".");
+    //     tamGord[i].value = tamGord[i].value.replace(",", ".");
+    //     if (tamCarb[i].value == "" || tamProt[i].value == "" || tamGord[i].value == "") {
+    //         alert("Preencha todos os campos!")
+    //         return;
+    //     }
+    // }
 
 
 
@@ -146,6 +146,10 @@ function processa() {
 
             for (var i = 0; i < tam.length; i++) {
                 tamCarb[i].value = tamCarb[i].value.replace(",", ".");
+                if (tamCarb[i].value == "") {
+                    // console.log("teste")
+                    return;
+                }
                 tamProt[i].value = tamProt[i].value.replace(",", ".");
                 tamGord[i].value = tamGord[i].value.replace(",", ".");
                 pesoCarboidratos.push(tamCarb[i].value);
@@ -231,7 +235,7 @@ function processa() {
             const ed = new EvolucaoDiferencial(5);
 
             ed.populacao();
-            for (let i = 0; i < 3000; i++) {
+            for (let i = 0; i < 500; i++) {
                 for (let j = 0; j < 5; j++) {
                     const tres = ed.seleciona3(j);
                     const tentativa = ed.mutacao(j, tres);
@@ -244,9 +248,9 @@ function processa() {
                 }
                 const melhorIndice = ed.melhorVetor();
                 const fitnessFormatado = ed.fitness(ed.pratos[melhorIndice]).toFixed(2);
-                console.log(`Geração ${i + 1}:`);
-                console.log(`Melhor Prato - ${ed.pratos[melhorIndice].toString()}`);
-                console.log(`Fitness - ${fitnessFormatado}`);
+                // console.log(`Geração ${i + 1}:`);
+                // console.log(`Melhor Prato - ${ed.pratos[melhorIndice].toString()}`);
+                // console.log(`Fitness - ${fitnessFormatado}`);
                 dados.push(`Geração ${i + 1}:`);
                 dados.push('\n');
                 dados.push(`Melhor Prato - ${ed.pratos[melhorIndice].toString()}`);
