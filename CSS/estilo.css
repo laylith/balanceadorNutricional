@@ -2,6 +2,7 @@ body {
     background-color: #f0ebeb;
     text-align: center;
     flex-direction: column;
+    color: #1d1818;
 }
 
 div#interface {
@@ -87,6 +88,7 @@ input.campo{
     background-color: transparent;
     border: 0px;
     justify-content: center;
+    color: #1d1818;
 }
 
 ::placeholder{
@@ -96,10 +98,16 @@ input.campo{
 .button{
     background-color: #614AEB;
     color: #f0ebeb;
-    border-bottom: 7px solid rgb(48, 36, 117); 
+    border-top: 1px solid rgba(135, 114, 255, 0.938);
+    border-left: 1px solid rgba(135, 114, 255, 0.938);
+    border-bottom: 5px solid rgb(48, 36, 117); 
     border-right: 5px solid rgb(48, 36, 117);
     border-radius: 7px;
     padding: 10px;
+}
+
+.button:hover{
+    background-color: rgb(126, 109, 223);
 }
 
 button#remover{
@@ -109,6 +117,10 @@ button#remover{
     border: 0px;
     border-radius: 5px;
     padding: 5px;
+}
+
+button#remover:hover{
+    background-color: rgb(72, 57, 156);
 }
 
 .removerbtn{
