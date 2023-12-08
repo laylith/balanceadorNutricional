@@ -1,45 +1,40 @@
-//Criação de variáveis globais.
 var dados = [];
 var colValor = 0;
-var colFitness = 0;
 var percCarboidratos = 0;
-var percGorduras = 0;
 var percProteinas = 0;
-var numRepet = 0;
+var percGorduras = 0;
 
-// Função para baixar histórico de cálculo de Evolução diferencial completo.
 function downloadTxt() {
-    // Cria um Blob com os dados e define o tipo como texto/plain.
+    // Cria um Blob com os dados e define o tipo MIME como texto/plain
     var blob = new Blob([dados], { type: "text/plain" });
 
-    // Cria um objeto URL para o Blob.a
+    // Cria um objeto URL para o Blob
     var url = window.URL.createObjectURL(blob);
 
-    // Cria um link de download.
+    // Cria um link de download
     var link = document.createElement("a");
     link.href = url;
-    // Nome do arquivo que será baixado.
-    link.download = "dados.txt"; 
+    link.download = "dados.txt"; // Nome do arquivo que será baixado
 
-    // Adiciona o link ao documento.
+    // Adiciona o link ao documento
     document.body.appendChild(link);
 
-    // Simula um clique no link para iniciar o download.
+    // Simula um clique no link para iniciar o download
     link.click();
 
-    // Remove o link do documento.
+    // Remove o link do documento
     document.body.removeChild(link);
 }
 
 function adicionarLinha() {
-    var tabela = document.getElementById('tabela');
-    var novaLinha = tabela.insertRow(tabela.rows.length);
+    let tabela = document.getElementById('tabela');
+    let novaLinha = tabela.insertRow(tabela.rows.length);
 
-    var celula1 = novaLinha.insertCell(0);
-    var celula2 = novaLinha.insertCell(1);
-    var celula3 = novaLinha.insertCell(2);
-    var celula4 = novaLinha.insertCell(3);
-    var celulaAcoes = novaLinha.insertCell(4);
+    let celula1 = novaLinha.insertCell(0);
+    let celula2 = novaLinha.insertCell(1);
+    let celula3 = novaLinha.insertCell(2);
+    let celula4 = novaLinha.insertCell(3);
+    let celulaAcoes = novaLinha.insertCell(4);
 
     celula1.innerHTML = '<input type="text" class="alimento campo" name="" id="" placeholder="gramas..." maxlength="10">';
     celula1.classList.add('celula');
@@ -68,13 +63,10 @@ function removerLinha(botaoRemover) {
     }
 }
 
-
-
 function processa() {
     percCarboidratos = parseInt(document.getElementById('percCarboidratos').value);
     percGorduras = parseInt(document.getElementById('percGorduras').value);
     percProteinas = parseInt(document.getElementById('percProteinas').value);
-    numRepet = document.getElementById('numRepet').value;
 
     if (isNaN(percCarboidratos) || isNaN(percGorduras) || isNaN(percProteinas)) {
         alert("Preencha a Porcentagem!");
@@ -86,6 +78,7 @@ function processa() {
         alert("Mais de 100%");
         return;
     }
+
     var tam = document.getElementsByClassName('alimento');
     var tamCarb = document.getElementsByClassName('carboidrato');
     var tamProt = document.getElementsByClassName('proteina');
@@ -98,13 +91,8 @@ function processa() {
         if (tamCarb[i].value == "" || tamProt[i].value == "" || tamGord[i].value == "") {
             alert("Preencha todos os campos!")
             return;
-        }else if(numRepet == ""){
-            alert("Preencha o número de repetições!");
-            return;
         }
     }
-
-
 
     // for (var i = 0; i < tam.length; i++) {
     //     console.log('Repetição ' + (i + 1) + ': Valor do input - ' + tam[i].value);
@@ -112,8 +100,6 @@ function processa() {
 
     document.getElementById("corpo").classList.toggle("hidden");
     document.getElementById("balanceamento").classList.toggle("hidden");
-
-
 
     class Prato {
 
@@ -142,13 +128,12 @@ function processa() {
             return this.pratos;
         }
 
-
         fitness(umPrato) {
             // prato/refeição deve possuir 30% de proteína, 15% de gorduras e 55% de carboidratos
             let pesoCarboidratos = [];
             let pesoProteinas = [];
             let pesoGorduras = [];
-            var carboidratos = 0;
+            let carboidratos = 0;
             let proteinas = 0;
             let gorduras = 0;
 
@@ -159,7 +144,6 @@ function processa() {
                 pesoCarboidratos.push(tamCarb[i].value);
                 pesoProteinas.push(tamProt[i].value);
                 pesoGorduras.push(tamGord[i].value);
-
             }
 
             for (var i = 0; i < tam.length; i++) {
@@ -169,7 +153,6 @@ function processa() {
                 gorduras = gorduras + umPrato.alimentos[i] * pesoGorduras[i]
             }
 
-
             let total, porcaoCarboidratos, porcaoProteinas, porcaoGorduras;
             let diffTotal, diffCarboidratos, diffProteinas, diffGorduras;
 
@@ -178,8 +161,6 @@ function processa() {
             porcaoProteinas = (proteinas / total) * 100;
             porcaoGorduras = (gorduras / total) * 100;
 
-
-
             diffCarboidratos = Math.abs(porcaoCarboidratos - percCarboidratos);
             diffProteinas = Math.abs(porcaoProteinas - percProteinas);
             diffGorduras = Math.abs(porcaoGorduras - percGorduras);
@@ -187,7 +168,6 @@ function processa() {
             diffTotal = diffCarboidratos + diffProteinas + diffGorduras;
             return diffTotal;
         }
-
 
         mutacao(parental, vetores3) {
             const pratoParental = this.pratos[parental];
@@ -230,18 +210,16 @@ function processa() {
         }
     }
 
-    EvolucaoDiferencial.CR = 0.3;
+    EvolucaoDiferencial.CR = 0.5;
     EvolucaoDiferencial.F = 0.8;
 
 
     class Teste {
         static main() {
             const ed = new EvolucaoDiferencial(5);
-            
-            console.log(numRepet);
 
             ed.populacao();
-            for (let i = 0; i < numRepet; i++) {
+            for (let i = 0; i < 1000; i++) {
                 for (let j = 0; j < 5; j++) {
                     const tres = ed.seleciona3(j);
                     const tentativa = ed.mutacao(j, tres);
@@ -254,8 +232,8 @@ function processa() {
                 }
                 const melhorIndice = ed.melhorVetor();
                 const fitnessFormatado = ed.fitness(ed.pratos[melhorIndice]).toFixed(2);
-                console.log(`Geração ${i + 1}:`);
-                console.log(`Melhor Prato - ${ed.pratos[melhorIndice].toString()}`);
+                // console.log(`Geração ${i + 1}:`);
+                // console.log(`Melhor Prato - ${ed.pratos[melhorIndice].toString()}`);
                 console.log(`Fitness - ${fitnessFormatado}`);
                 dados.push(`Geração ${i + 1}:`);
                 dados.push('\n');
@@ -265,7 +243,6 @@ function processa() {
                 dados.push('\n\n');
 
                 colValor = ed.pratos[melhorIndice].toString()
-                colFitness = fitnessFormatado;
             }
         }
     }
@@ -279,23 +256,24 @@ function coluna() {
     colValor = colValor.replace("]", "");
     colValor = colValor.split(", ")
 
-    let tam = document.getElementsByClassName('alimento');
-    let tabela = document.getElementById('tabela2');
-    let fitness = document.getElementById('fitness');
+    var tam = document.getElementsByClassName('alimento');
+    var tabela = document.getElementById('tabela2');
 
     for (let cont = 0; cont < tam.length; cont++) {
-        let celula1 = tabela.rows[0].insertCell(tabela.rows[0].cells.length);
-        let celula2 = tabela.rows[1].insertCell(tabela.rows[1].cells.length);
+        var celula1 = tabela.rows[0].insertCell(tabela.rows[0].cells.length);
+        var celula2 = tabela.rows[1].insertCell(tabela.rows[1].cells.length);
         celula1.innerHTML = '<td>' + tam[cont].value + '</td>';
         celula1.id = "vetorNomes";
         celula2.innerHTML = '<td>' + colValor[cont] + '</td>';
         celula2.id = "vetorResultados";
     }
 
-    fitness.innerHTML = 'Melhor Fitness: ' + colFitness;
-
 }
 
 function recarregarPagina() {
     location.reload();
+}
+
+function porcentagem() {
+
 }
