@@ -14,50 +14,49 @@
 
 header#cabecalho{
     font-family: 'FonteCabecalho';
-    font-size: 2.4em;
+    font-size: 2em;
 }
 
-section#corpo h2{
+section#corpo h2, h3{
     font-family: 'FonteCabecalho';
-    font-size: 2em;
+    font-size: 1.6em;
 }
 
 section#corpo h3{
     font-family: 'FonteCabecalho';
-    font-size: 1.6em;
+    font-size: 1.4em;
+}
+
+p#aviso{
+    font-size: 1em;
 }
 
 p{
     font-family: 'FonteCorpo';
-    font-size: 1.4em;
-}
-
-tr#fundo, .qdadeAli{
-    font-family: 'FonteCabecalho';
-    font-size: 1.6em;
-}
-
-::placeholder, input{
-    font-family: 'FonteCorpo';
     font-size: 1.2em;
+}
+
+tr#fundo, .qdadeAli, td#vetorNomes{
+    font-family: 'FonteCabecalho';
+    font-size: 1.2em;
+}
+
+::placeholder, input, td#vetorResultados{
+    font-family: 'FonteCorpo';
+    font-size: 1em;
 }
 
 section#balanceamento h2{
     font-family: 'FonteCabecalho';
-    font-size: 3em;
+    font-size: 2.2em;
 }
 
 button{
     font-family: 'FonteCabecalho';
-    font-size: 1.8em;
+    font-size: 1.2em;
 }
 
 button#remover{
     font-family: 'FonteCabecalho';
-    font-size: 1.2em;
-}
-
-th#vetorResultado{
-    font-family: 'FonteCorpo';
     font-size: 1.2em;
 }
