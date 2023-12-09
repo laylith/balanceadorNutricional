@@ -1,245 +1,308 @@
-class Prato {
-     //Inicializa e define o tamanho do array de alimentos no prato. (fixo em 5 por enquanto)
-    constructor(tamanho = 5) {
-      this.alimentos = new Array(tamanho);
+//Criação de variáveis globais.
+var dados = [];
+var colValor = 0;
+var colFitness = 0;
+var percCarboidratos = 0;
+var percGorduras = 0;
+var percProteinas = 0;
+var numRepet = 0;
 
-      
-      for (let i = 0; i < tamanho; i++) {
-        let numeroValido;
-        //Verifica para saber se valor aleatório é NaN
-        do {
-          numeroValido = Math.random() * 100;
-        } while (isNaN(numeroValido));
-        
-        //Preenche o array com valores aleatórios entre 0 e 100 para testar quantidades de cada alimento.
-        this.alimentos[i] = numeroValido;
-      }
-    }
-    
-    //Adiciona um valor ao final do array de alimentos.
-    add(valor) {
-      this.alimentos.push(valor);
-    }
-  
-    toString() {
-      //Representa o início do prato.
-      let prato = "[";
+// Função para baixar histórico de cálculo de Evolução diferencial completo.
+function downloadTxt() {
+    // Cria um Blob com os dados e define o tipo como texto/plain.
+    var blob = new Blob([dados], { type: "text/plain" });
 
-      for (let i = 0; i < this.alimentos.length; i++) {
-        // Adiciona o valor atual ao string prato.
-        prato += this.alimentos[i].toString();
-        // Adiciona uma vírgula e um espaço se não for o último elemento do array.
-        if (i < this.alimentos.length - 1) prato += ", ";
-      }
+    // Cria um objeto URL para o Blob.a
+    var url = window.URL.createObjectURL(blob);
 
-      //Adiciona "]" para representar o final do prato.
-      prato += "]";
+    // Cria um link de download.
+    var link = document.createElement("a");
+    link.href = url;
+    // Nome do arquivo que será baixado.
+    link.download = "dados.txt"; 
 
-      //Retorna a string final que representa o prato.
-      return prato;
-    }
-  }
-  
-  class EvolucaoDiferencial {
-    //Inicializa a propriedade pratos e indica quantos serão gerados.
-    constructor(tamanho) {
-      this.tamanho = tamanho;
-      //Cria um array de pratos dentro da classe EvolucaoDiferencial.
-      this.pratos = new Array(this.tamanho);
-    }
-    
-    //Preenche o array pratos com o número de instâncias Prato definido no construtor.
-    populacao() {
-      for (let i = 0; i < this.tamanho; i++) {
-        this.pratos[i] = new Prato();
-      }
-      return this.pratos;
-    }
-  
-    fitness(umPrato) {
-      //Cálculo das quantidades de carboidratos, proteínas e gorduras com base nos alimentos do prato.
-      let carboidratos =
-        umPrato.alimentos[0] * 0.05 +
-        umPrato.alimentos[1] * 0.24 +
-        umPrato.alimentos[2] * 0.26 +
-        umPrato.alimentos[3] * 0.15 +
-        umPrato.alimentos[4] * 0.29;
-  
-      let proteinas =
-        umPrato.alimentos[0] * 0.23 +
-        umPrato.alimentos[1] * 0.02 +
-        umPrato.alimentos[2] * 0.026 +
-        umPrato.alimentos[3] * 0.13 +
-        umPrato.alimentos[4] * 0.095;
-  
-      let gorduras =
-        umPrato.alimentos[0] * 0.05 +
-        umPrato.alimentos[1] * 0.00 +
-        umPrato.alimentos[2] * 0.01 +
-        umPrato.alimentos[3] * 0.089 +
-        umPrato.alimentos[4] * 0.014;
-      
-      
-      let total, porcaoCarboidratos, porcaoProteinas, porcaoGorduras;
-      let diffTotal, diffCarboidratos, diffProteinas, diffGorduras;
-  
-      total = carboidratos + proteinas + gorduras;
-      
-      //Cálculo das porcentagens de cada componente em relação ao total.
-      porcaoCarboidratos = (carboidratos / total) * 100;
-      porcaoProteinas = (proteinas / total) * 100;
-      porcaoGorduras = (gorduras / total) * 100;
+    // Adiciona o link ao documento.
+    document.body.appendChild(link);
 
-      //Cálculo das diferenças em relação às metas desejadas, math.abs() garante que os valores sejam sempre avaliados como positivos.
-      diffCarboidratos = Math.abs(porcaoCarboidratos - 55);
-      diffProteinas = Math.abs(porcaoProteinas - 30);
-      diffGorduras = Math.abs(porcaoGorduras - 15);
+    // Simula um clique no link para iniciar o download.
+    link.click();
 
-      //Cálculo da soma das diferenças para obter o valor total de fitness.
-      diffTotal = diffCarboidratos + diffProteinas + diffGorduras;
-      
-      //Retorna o valor total do fitness para o prato.
-      return diffTotal;
+    // Remove o link do documento.
+    document.body.removeChild(link);
+}
+
+function adicionarLinha() {
+    // Localiza tabela no HTML e insere uma linha.
+    var tabela = document.getElementById('tabela');
+    var novaLinha = tabela.insertRow(tabela.rows.length);
+
+    // Adiciona celulas/colunas novas.
+    var celula1 = novaLinha.insertCell(0);
+    var celula2 = novaLinha.insertCell(1);
+    var celula3 = novaLinha.insertCell(2);
+    var celula4 = novaLinha.insertCell(3);
+    var celulaAcoes = novaLinha.insertCell(4);
+
+    // Formata informações da célula como placeholder.
+    celula1.innerHTML = '<input type="text" class="alimento campo" name="" id="" placeholder="gramas..." maxlength="10">';
+    celula1.classList.add('celula');
+    celula2.innerHTML = '<input type="text" class="proteina campo" name="" id="" placeholder="gramas..." maxlength="10">';
+    celula2.classList.add('celula');
+    celula3.innerHTML = '<input type="text" class="carboidrato campo" name="" id="" placeholder="gramas..." maxlength="10">';
+    celula3.classList.add('celula');
+    celula4.innerHTML = '<input type="text" class="gordura campo" name="" id="" placeholder="gramas..." maxlength="10">';
+    celula4.classList.add('celula');
+
+    // Adiciona botão 'Remover', exceto para as três primeiras linhas.
+    if (tabela.rows.length > 3) {
+        celulaAcoes.innerHTML = '<button onclick="removerLinha(this)" id="remover">Remover</button>';
     }
-  
-    mutacao(parental, vetores3) {
-      let cont = 0;
-      let A, B, C;
-      let X;
-      
-      //Obtém novo prato parental e cria uma tentativa de Prato.
-      let pratoParental = this.pratos[parental];
-      let tentativa = new Prato();
-      
-      //Atribui A, B e C a pratos aleatórios da população.
-      A = vetores3[0];
-      B = vetores3[1];
-      C = vetores3[2];
-      
-       //Percorre os alimentos do prato parental e gera um número aleatório de 0 a 1.
-      while (cont < pratoParental.alimentos.length) {
-        let R
-        //Verifica para saber se valor de R é NaN
-        do {
-          R = Math.random();
-        } while (isNaN(R));
-        
-        //Verifica se R é menor que o parâmetro de taxa de crossover (CR).
-        if (R < EvolucaoDiferencial.CR) {
-          X = A.alimentos[cont] + EvolucaoDiferencial.F * (B.alimentos[cont] - C.alimentos[cont]);
-        } else {
-          //Se R não for menor que CR, mantém o valor do prato parental.
-          X = pratoParental.alimentos[cont];
+    // Adiciona uma classe com nome de 'removerbtn'.
+    celulaAcoes.classList.add('removerbtn');
+}
+
+function removerLinha(botaoRemover) {
+    // Localiza tabela no HTML.
+    var tabela = document.getElementById('tabela');
+    // Acessa o elemento HTML onde está inserido o botão remover e acessa o nó pai do elemento a fim de localizar seu índice.
+    var rowIndex = botaoRemover.parentNode.parentNode.rowIndex;
+
+    // Garante que haja no mínimo três linhas antes de remover.
+    if (tabela.rows.length > 3) {
+        tabela.deleteRow(rowIndex);
+    }
+}
+
+function processa() {
+    // Obtém os valores de porcentagem dos nutrientes inseridos pelo usuário.
+    percCarboidratos = parseInt(document.getElementById('percCarboidratos').value);
+    percGorduras = parseInt(document.getElementById('percGorduras').value);
+    percProteinas = parseInt(document.getElementById('percProteinas').value);
+    numRepet = document.getElementById('numRepet').value;
+
+    // Realiza verificações dos campos de inserção de porcentagem dos nutrientes, como se algum algum dos valores é do tipo NaN, se o campo não foi preenchido, se a soma ultrapassa ou não atinge 100%.
+    if (isNaN(percCarboidratos) || isNaN(percGorduras) || isNaN(percProteinas)) {
+        alert("Preencha a Porcentagem!");
+        return;
+    } else if ((percCarboidratos + percGorduras + percProteinas) < 100) {
+        alert("Menos de 100%");
+        return;
+    } else if ((percCarboidratos + percGorduras + percProteinas) > 100) {
+        alert("Mais de 100%");
+        return;
+    }
+
+    // Atribui variáveis a campos inseridos no HTML através da classe.
+    var tam = document.getElementsByClassName('alimento');
+    var tamCarb = document.getElementsByClassName('carboidrato');
+    var tamProt = document.getElementsByClassName('proteina');
+    var tamGord = document.getElementsByClassName('gordura');
+
+    // Valida se tofos os campos de inserção na tabela de alimentos e quantidade de iterações foram preenchidos.
+    for (var i = 0; i < tam.length; i++) {
+        tamCarb[i].value = tamCarb[i].value.replace(",", ".");
+        tamProt[i].value = tamProt[i].value.replace(",", ".");
+        tamGord[i].value = tamGord[i].value.replace(",", ".");
+        if (tamCarb[i].value == "" || tamProt[i].value == "" || tamGord[i].value == "") {
+            alert("Preencha todos os campos!")
+            return;
+        }else if(numRepet == ""){
+            alert("Preencha o número de repetições!");
+            return;
+        }
+    }
+
+    // Altera a visibilidade das divs para simular um avanço de tela.
+    document.getElementById("corpo").classList.toggle("hidden");
+    document.getElementById("balanceamento").classList.toggle("hidden");
+
+    class Prato {
+        // Construtor recebe o tamanho do vetor de alimentos.
+        constructor(tamanho = tam.length) {
+            // Preenche o veotr com valores aleatórios de 0 a 100.
+            this.alimentos = Array.from({ length: tamanho }, () => Math.random() * 100);
         }
 
-        if (!isNaN(X)) {
-          // Adiciona o valor ao prato de tentativa.
-          tentativa.add(X);
-          cont++;
-        } else {
-          // Se X for NaN, pular valor e seguir com outro loop.
-          cont++;
+        // Recebe parâmetro valor e adiciona ao vetor alimentos.
+        add(valor) {
+            this.alimentos.push(valor);
         }
-      }
-      return tentativa;
-    }
-  
-    melhorVetor() {
-      let notas = [];
-      let melhor = 0;
 
-      //Cálculo do fitness para cada prato na população.
-      for (let i = 0; i < this.tamanho; i++) {
-        notas.push(this.fitness(this.pratos[i]));
-      }
-
-      //Encontra o índice do vetor prato com o melhor fitness.
-      for (let i = 0; i < notas.length; i++) {
-        if (notas[melhor] > notas[i]) melhor = i;
-      }
-      return melhor;
-    }
-    
-    //Remove um elemento da população pratos pelo índice.
-    removeVetor(indice) {
-      this.pratos.splice(indice, 1);
-    }
-    
-    //Adiciona o prato fornecido ao final da população usando o método push.
-    addPrato(umPrato) {
-      this.pratos.push(umPrato);
-    }
-  
-    seleciona3(parental) {
-      let p2 = [];
-      let vetores3 = [];
-      
-      //Adiciona elementos ao array p2, excluindo o elemento na posição parental.
-      for (let i = 0; i < this.tamanho; i++) {
-        if (parental !== i) p2.push(this.pratos[i]);
-      }
-      
-      //Loop para selecionar aleatoriamente 3 elementos de p2.
-      for (let i = 0; i < 3; i++) {
-        //Gera um índice aleatório dentro dos limites de p2.
-        let indice = Math.floor(Math.random() * (p2.length - i));
-        //Adiciona o elemento correspondente ao índice gerado ao array vetores3.
-        vetores3.push(p2[indice]);
-        //Remove o elemento selecionado de p2 para evitar repetições.
-        p2.splice(indice, 1);
-      }
-      //Retorna o array contendo os 3 elementos aleatórios selecionados.
-      return vetores3;
-    }
-  
-    toString() {
-      let populacao = "[";
-      for (let i = 0; i < this.tamanho; i++)
-        //Concatena cada elemento do array convertido para string à variável populacao.
-        populacao += this.pratos[i].toString();
-      populacao += "]";
-      return populacao;
-    }
-  }
-  
-  //Probabilidade de Crossover.
-  EvolucaoDiferencial.CR = 0.3;
-  //Peso Diferencial.
-  EvolucaoDiferencial.F = 0.8;
-  
-  class Teste {
-    static main() {
-      let tres;
-      let tentativa;
-      //Instancia a classe EvolucaoDiferencial passando o parâmetro 5 ao construtor.
-      let ed = new EvolucaoDiferencial(5);
-
-      //Inicializa a população.
-      ed.populacao();
-
-      for (let i = 0; i < 1000; i++) {
-        for (let j = 0; j < 5; j++) {
-          //Chama o método de seleção de três elementos do vetor.
-          tres = ed.seleciona3(j);
-          //Chama o método de mutação de três elementos do vetor e parental.
-          tentativa = ed.mutacao(j, tres);
-          //Compara o fitness da tentativa com o fitness do vetor atual e, se a tentativa for melhor, atualiza a população.
-          if (ed.fitness(tentativa) < ed.fitness(ed.pratos[j])) {
-            ed.removeVetor(j);
-            ed.addPrato(tentativa);
-          }
+        // Formata o vetor e aredonda os valores decimais para duas casas depois da vírgula.
+        toString() {
+            return `[${this.alimentos.map(alimento => alimento.toFixed(2)).join(', ')}]`;
         }
-        //Exibe informações sobre o melhor vetor atual.
-        console.log(
-          ed.melhorVetor() + " - " + ed.pratos[ed.melhorVetor()].toString()
-        );
-        //Exibe o fitness do melhor vetor atual.
-        console.log(
-          "Fitness: " + ed.fitness(ed.pratos[ed.melhorVetor()])
-        );
-      }
     }
-  }
-  
-Teste.main();
-  
+
+    class EvolucaoDiferencial {
+        // Construtor recebe um parâmetro para armazenar tamanho da população e cria um array de objetos Prato.
+        constructor(tamanho) {
+            this.tamanho = tamanho;
+            this.pratos = Array.from({ length: tamanho }, () => new Prato());
+        }
+
+        // Reinicializa a população com um novo array de alimentos preenchido aleatoriamente.
+        populacao() {
+            this.pratos = Array.from({ length: this.tamanho }, () => new Prato());
+            this.pratos.forEach(prato => prato.alimentos = new Array(prato.alimentos.length).fill(0).map(() => Math.random() * 100));
+            return this.pratos;
+        }
+
+        fitness(umPrato) {
+            // Declara vairáveis de cada um dos nutrientes e seus respectivos pesos.
+            let pesoCarboidratos = [];
+            let pesoProteinas = [];
+            let pesoGorduras = [];
+            var carboidratos = 0;
+            let proteinas = 0;
+            let gorduras = 0;
+
+            // Roda um loop de para substituir sinais de vírgula nos decimais por ponto.
+            for (var i = 0; i < tam.length; i++) {
+                tamCarb[i].value = tamCarb[i].value.replace(",", ".");
+                tamProt[i].value = tamProt[i].value.replace(",", ".");
+                tamGord[i].value = tamGord[i].value.replace(",", ".");
+                pesoCarboidratos.push(tamCarb[i].value);
+                pesoProteinas.push(tamProt[i].value);
+                pesoGorduras.push(tamGord[i].value);
+
+            }
+
+            // Loop para multiplicar a quantidade de alimento no prato pelo peso de cada nutriente em questão.
+            for (var i = 0; i < tam.length; i++) {
+                carboidratos = carboidratos + umPrato.alimentos[i] * pesoCarboidratos[i]
+                proteinas = proteinas + umPrato.alimentos[i] * pesoProteinas[i]
+                gorduras = gorduras + umPrato.alimentos[i] * pesoGorduras[i]
+            }
+
+            // Calcula as porções de cada nutriente dividindo o mesmo pelo total de macronutrientes do prato, trnasformando em porcentagem.
+            let total, porcaoCarboidratos, porcaoProteinas, porcaoGorduras;
+            let diffTotal, diffCarboidratos, diffProteinas, diffGorduras;
+
+            total = carboidratos + proteinas + gorduras;
+            porcaoCarboidratos = (carboidratos / total) * 100;
+            porcaoProteinas = (proteinas / total) * 100;
+            porcaoGorduras = (gorduras / total) * 100;
+
+            // Compara a diferença entre as porções obtidas e o percentual ideal de nutrientes infomado pelo usuário.
+            diffCarboidratos = Math.abs(porcaoCarboidratos - percCarboidratos);
+            diffProteinas = Math.abs(porcaoProteinas - percProteinas);
+            diffGorduras = Math.abs(porcaoGorduras - percGorduras);
+
+            // Veirifica a diferença total entre os valores obtidos e o ideal.
+            diffTotal = diffCarboidratos + diffProteinas + diffGorduras;
+            return diffTotal;
+        }
+
+        // Recebe um prato parental e um vetor com 3 pratos selecionados aleatoriamente para mutação.
+        mutacao(parental, vetores3) {
+            const pratoParental = this.pratos[parental];
+            const [A, B, C] = vetores3;
+            let tentativa = new Prato();
+
+            // O loop roda um valor de roleta aleatório, que é então comparado com o valor de crossover definido.
+            for (let cont = 0; cont < 0; cont++) {
+                const R = Math.random();
+                const X = R < EvolucaoDiferencial.CR ? A.alimentos[cont] + (EvolucaoDiferencial.F * (B.alimentos[cont] - C.alimentos[cont])) : pratoParental.alimentos[cont];
+                tentativa.add(X);
+            }
+
+            return tentativa;
+        }
+
+        melhorVetor() {
+            const notas = this.pratos.map(prato => this.fitness(prato));
+            return notas.indexOf(Math.min(...notas));
+        }
+
+        removeVetor(indice) {
+            this.pratos.splice(indice, 1);
+        }
+
+        addPrato(umPrato) {
+            this.pratos.push(umPrato);
+        }
+
+        seleciona3(parental) {
+            const p2 = this.pratos.filter((prato, i) => i !== parental);
+            const vetores3 = Array.from({ length: 3 }, () => {
+                const indice = Math.floor(Math.random() * p2.length);
+                return p2.splice(indice, 1)[0];
+            });
+            return vetores3;
+        }
+
+        toString() {
+            return `[${this.pratos.map(prato => prato.toString()).join(', ')}]`;
+        }
+    }
+
+    EvolucaoDiferencial.CR = 0.3;
+    EvolucaoDiferencial.F = 0.8;
+
+
+    class Teste {
+        static main() {
+            const ed = new EvolucaoDiferencial(5);
+            
+            console.log(numRepet);
+
+            ed.populacao();
+            for (let i = 0; i < numRepet; i++) {
+                for (let j = 0; j < 5; j++) {
+                    const tres = ed.seleciona3(j);
+                    const tentativa = ed.mutacao(j, tres);
+
+                    if (ed.fitness(tentativa) < ed.fitness(ed.pratos[j])) {
+                        ed.removeVetor(j);
+                        ed.addPrato(tentativa);
+                    }
+
+                }
+                const melhorIndice = ed.melhorVetor();
+                const fitnessFormatado = ed.fitness(ed.pratos[melhorIndice]).toFixed(2);
+                console.log(`Geração ${i + 1}:`);
+                console.log(`Melhor Prato - ${ed.pratos[melhorIndice].toString()}`);
+                console.log(`Fitness - ${fitnessFormatado}`);
+                dados.push(`Geração ${i + 1}:`);
+                dados.push('\n');
+                dados.push(`Melhor Prato - ${ed.pratos[melhorIndice].toString()}`);
+                dados.push('\n');
+                dados.push(`Fitness - ${fitnessFormatado}`);
+                dados.push('\n\n');
+
+                colValor = ed.pratos[melhorIndice].toString()
+                colFitness = fitnessFormatado;
+            }
+        }
+    }
+
+    Teste.main();
+}
+
+function coluna() {
+
+    colValor = colValor.replace("[", "");
+    colValor = colValor.replace("]", "");
+    colValor = colValor.split(", ")
+
+    let tam = document.getElementsByClassName('alimento');
+    let tabela = document.getElementById('tabela2');
+    let fitness = document.getElementById('fitness');
+
+    for (let cont = 0; cont < tam.length; cont++) {
+        let celula1 = tabela.rows[0].insertCell(tabela.rows[0].cells.length);
+        let celula2 = tabela.rows[1].insertCell(tabela.rows[1].cells.length);
+        celula1.innerHTML = '<td>' + tam[cont].value + '</td>';
+        celula1.id = "vetorNomes";
+        celula2.innerHTML = '<td>' + colValor[cont] + '</td>';
+        celula2.id = "vetorResultados";
+    }
+
+    fitness.innerHTML = 'Melhor Fitness: ' + colFitness;
+
+}
+
+function recarregarPagina() {
+    location.reload();
+}
