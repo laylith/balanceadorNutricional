@@ -104,7 +104,7 @@ function processa() {
         tamProt[i].value = tamProt[i].value.replace(",", ".");
         tamGord[i].value = tamGord[i].value.replace(",", ".");
         if (tamCarb[i].value == "" || tamProt[i].value == "" || tamGord[i].value == "") {
-            alert("Preencha ao menos todos os campos de 5 alimentos!")
+            alert("Preencha ao menos 5 alimentos, e não deixe nem um campo em branco!")
             return;
         } else if (numRepet == "") {
             alert("Preencha o número de repetições!");
