@@ -19,7 +19,7 @@ function downloadTxt() {
     var link = document.createElement("a");
     link.href = url;
     // Nome do arquivo que será baixado.
-    link.download = "dados.txt"; 
+    link.download = "dados.txt";
 
     // Adiciona o link ao documento.
     document.body.appendChild(link);
@@ -104,9 +104,9 @@ function processa() {
         tamProt[i].value = tamProt[i].value.replace(",", ".");
         tamGord[i].value = tamGord[i].value.replace(",", ".");
         if (tamCarb[i].value == "" || tamProt[i].value == "" || tamGord[i].value == "") {
-            alert("Preencha todos os campos!")
+            alert("Preencha ao menos todos os campos de 5 alimentos!")
             return;
-        }else if(numRepet == ""){
+        } else if (numRepet == "") {
             alert("Preencha o número de repetições!");
             return;
         }
@@ -153,7 +153,7 @@ function processa() {
             let pesoCarboidratos = [];
             let pesoProteinas = [];
             let pesoGorduras = [];
-            var carboidratos = 0;
+            let carboidratos = 0;
             let proteinas = 0;
             let gorduras = 0;
 
@@ -204,7 +204,7 @@ function processa() {
             Caso o valor seja menor que o crossover, a seguinte conta será executada fórmula: Ai + F * (Bi - Ci).
             Se o valor calculado foi melhor que o parental, este será subtituido*/
             for (let cont = 0; cont < 0; cont++) {
-                const R = Math.random(); 
+                const R = Math.random();
                 const X = R < EvolucaoDiferencial.CR ? A.alimentos[cont] + (EvolucaoDiferencial.F * (B.alimentos[cont] - C.alimentos[cont])) : pratoParental.alimentos[cont];
                 tentativa.add(X);
             }
@@ -236,6 +236,18 @@ function processa() {
             return vetores3;
         }
 
+        //Seleciona 3 elementos com indice diferente do 'parental'
+        seleciona3(parental) {
+            const p2 = this.pratos.filter((prato, i) => i !== parental);
+            const vetores3 = Array.from({ length: 3 }, () => {
+                const indice = Math.floor(Math.random() * p2.length);
+                return p2.splice(indice, 1)[0];
+            });
+
+            return vetores3;
+        }
+
+        //Mapeia cada elemento para uma representação em String
         toString() {
             return `[${this.pratos.map(prato => prato.toString()).join(', ')}]`;
         }
@@ -244,12 +256,9 @@ function processa() {
     EvolucaoDiferencial.CR = 0.3;
     EvolucaoDiferencial.F = 0.8;
 
-
     class Teste {
         static main() {
             const ed = new EvolucaoDiferencial(5);
-            
-            console.log(numRepet);
 
             ed.populacao();
             for (let i = 0; i < numRepet; i++) {
@@ -257,17 +266,16 @@ function processa() {
                     const tres = ed.seleciona3(j);
                     const tentativa = ed.mutacao(j, tres);
 
+                    //Analisa se o fitness encontrado é melhor que o anterior, caso não for mantem o resultado anterior
                     if (ed.fitness(tentativa) < ed.fitness(ed.pratos[j])) {
                         ed.removeVetor(j);
                         ed.addPrato(tentativa);
                     }
-
                 }
+
+                //Adicionar os dados de cada execução em um vetor para ser gerado um arquivo de download caso desejado
                 const melhorIndice = ed.melhorVetor();
                 const fitnessFormatado = ed.fitness(ed.pratos[melhorIndice]).toFixed(2);
-                console.log(`Geração ${i + 1}:`);
-                console.log(`Melhor Prato - ${ed.pratos[melhorIndice].toString()}`);
-                console.log(`Fitness - ${fitnessFormatado}`);
                 dados.push(`Geração ${i + 1}:`);
                 dados.push('\n');
                 dados.push(`Melhor Prato - ${ed.pratos[melhorIndice].toString()}`);
@@ -283,7 +291,7 @@ function processa() {
 
     Teste.main();
 }
-
+//Função que adiciona colunas de acordo com a quantia de alimentos inseridas para mostrar o resultado
 function coluna() {
 
     colValor = colValor.replace("[", "");
@@ -294,6 +302,7 @@ function coluna() {
     let tabela = document.getElementById('tabela2');
     let fitness = document.getElementById('fitness');
 
+    //Cria colunas para cada alimento informado, imprimindo o melhor resultado na tela
     for (let cont = 0; cont < tam.length; cont++) {
         let celula1 = tabela.rows[0].insertCell(tabela.rows[0].cells.length);
         let celula2 = tabela.rows[1].insertCell(tabela.rows[1].cells.length);
@@ -302,11 +311,12 @@ function coluna() {
         celula2.innerHTML = '<td>' + colValor[cont] + '</td>';
         celula2.id = "vetorResultados";
     }
-
+    //imprime o valor do melhor Fitiness
     fitness.innerHTML = 'Melhor Fitness: ' + colFitness;
 
 }
 
+//Recarrega a pagina para limpar os valores caso desejavel um novo balancemento
 function recarregarPagina() {
     location.reload();
 }

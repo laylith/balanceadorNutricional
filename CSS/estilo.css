@@ -13,7 +13,7 @@ div#interface {
 header#cabecalho {
     height: auto;
     background-color: #614AEB;
-}   
+}
 
 header#cabecalho h1 {
     color: rgb(255, 255, 255);
@@ -21,96 +21,86 @@ header#cabecalho h1 {
     text-align: center;
 }
 
-p#aviso{
+p#aviso {
     color: #ff0000;
     font-weight: bold;
     margin-top: -20px;
 }
+
 .hidden {
     display: none;
 }
 
-.space{
+.space {
     margin: 0 20px 0 20px;
 }
 
-section#corpo h2{
-    color:  #614AEB;
+section#corpo h2 {
+    color: #614AEB;
     margin: 0;
 }
 
-/* div#caixa {
-    width: 200px;
-    height: 50px;
-    border: 1px solid rgb(34, 33, 33);
-    box-sizing: border-box;
-} */
-/* div#fora p {
-    text-align: center;
-    margin: 0;
-    color: #1a1818;
-    font-size: 14px;
-} */
-
-div#container{
+div#container {
     display: flex;
     justify-content: center;
 }
 
-table#tabela, table#tabela2{
+table#tabela,
+table#tabela2 {
     width: 80%;
     margin: auto;
     border-collapse: collapse;
     justify-content: center;
-} 
+}
 
-th{
+th {
     border: 5px solid #f0ebeb;
     border-radius: 12px;
     padding: 7px;
-    color:#f0ebeb;
+    color: #f0ebeb;
     background-color: #614AEB;
 }
 
-table#tabela td.celula, td#vetorResultados{
+table#tabela td.celula,
+td#vetorResultados {
     background-color: #c7c6cc;
     border: 5px solid #f0ebeb;
     border-radius: 12px;
     padding: 5px;
 }
 
-.botoes{
+.botoes {
     display: flex;
     justify-content: space-evenly;
 }
 
-input.campo{
+input.campo {
     background-color: transparent;
     border: 0px;
     justify-content: center;
     color: #1d1818;
 }
 
-::placeholder{
+::placeholder {
     color: rgb(70, 70, 70);
 }
 
-.button{
+.button {
     background-color: #614AEB;
     color: #f0ebeb;
     border-top: 1px solid rgba(135, 114, 255, 0.938);
     border-left: 1px solid rgba(135, 114, 255, 0.938);
-    border-bottom: 5px solid rgb(48, 36, 117); 
+    border-bottom: 5px solid rgb(48, 36, 117);
     border-right: 5px solid rgb(48, 36, 117);
     border-radius: 7px;
     padding: 10px;
 }
 
-.button:hover{
+.button:hover {
     background-color: rgb(126, 109, 223);
 }
 
-button#remover{
+button#remover {
     background-color: #614AEB;
     letter-spacing: 1px;
     color: #f0ebeb;
@@ -119,27 +109,27 @@ button#remover{
     padding: 5px;
 }
 
-button#remover:hover{
+button#remover:hover {
     background-color: rgb(72, 57, 156);
 }
 
-.removerbtn{
+.removerbtn {
     background-color: transparent;
 }
 
-.qdadeAli{
+.qdadeAli {
     border: 5px solid #f0ebeb;
     border-radius: 12px;
     padding: 7px;
-    color:#f0ebeb;
+    color: #f0ebeb;
     background-color: #614AEB;
     width: 30%;
 }
 
-td#vetorNomes{
+td#vetorNomes {
     border: 5px solid #f0ebeb;
     border-radius: 12px;
     padding: 7px;
-    color:#f0ebeb;
+    color: #f0ebeb;
     background-color: #614AEB;
 }
