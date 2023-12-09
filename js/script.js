@@ -200,25 +200,29 @@ function processa() {
             const [A, B, C] = vetores3;
             let tentativa = new Prato();
 
-            // O loop roda um valor de roleta aleatório, que é então comparado com o valor de crossover definido.
+            /*O loop roda um valor de roleta aleatório, que é então comparado com o valor de crossover definido.
+            Caso o valor seja menor que o crossover, a seguinte conta será executada fórmula: Ai + F * (Bi - Ci).
+            Se o valor calculado foi melhor que o parental, este será subtituido*/
             for (let cont = 0; cont < 0; cont++) {
-                const R = Math.random();
+                const R = Math.random(); 
                 const X = R < EvolucaoDiferencial.CR ? A.alimentos[cont] + (EvolucaoDiferencial.F * (B.alimentos[cont] - C.alimentos[cont])) : pratoParental.alimentos[cont];
                 tentativa.add(X);
             }
-
             return tentativa;
         }
 
+        // Percorre cada elemento do vetor e calcula sua adaptidão(fitness), armazenando estas 'notas' de classificação da população em um novo array.
         melhorVetor() {
             const notas = this.pratos.map(prato => this.fitness(prato));
             return notas.indexOf(Math.min(...notas));
         }
 
+        // Remove o elemento do vetor indicado no índice.
         removeVetor(indice) {
             this.pratos.splice(indice, 1);
         }
 
+        // Adiciona um elemento ao final do array.
         addPrato(umPrato) {
             this.pratos.push(umPrato);
         }
